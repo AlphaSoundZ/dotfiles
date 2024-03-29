@@ -60,8 +60,8 @@ return {
         "golines",
         "goimports-reviser",
         "gofumpt",
-        "prisma-language-server",
         "json-lsp",
+        "bash-language-server",
       },
     },
   },
@@ -74,6 +74,16 @@ return {
       -- refer to the configuration section below
     },
     event = "VeryLazy",
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    event = "VeryLazy",
+    opts = {
+      git = {
+        enable = true,
+        ignore = false,
+      },
+    },
   },
   {
     "f-person/git-blame.nvim",

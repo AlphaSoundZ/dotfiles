@@ -98,8 +98,17 @@ export PATH="$HOME/.cargo/bin:$PATH"
 alias matrix='cmatrix'
 alias monkeytype='smassh'
 
+# Zoxide
 eval "$(zoxide init bash)"
+alias cd='z'
 
 # https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 # Dotfiles as git bare repository
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# auto cd
+shopt -s autocd
+
+# Safe rm and mv
+alias rm='rm -i'
+alias mv='mv -i'

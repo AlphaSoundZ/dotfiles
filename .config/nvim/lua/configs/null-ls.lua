@@ -11,8 +11,6 @@ local sources = {
   formatting.gofumpt,
   formatting.goimports_reviser,
   formatting.golines,
-
-  lint.shellcheck,
 }
 
 null_ls.setup {

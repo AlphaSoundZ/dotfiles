@@ -4,9 +4,14 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
+map({ "n", "v" }, ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "ciw", "<ESC>ciw")
+-- map({ "n", "i" }, "<C-t>", "<CMD>TroubleToggle<CR>", { desc = "Trouble Toggle", remap = true })
+map("i", "<Tab>", function()
+  return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
+end, { expr = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Move to window above", remap = true })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 local M = {}
@@ -101,6 +106,17 @@ M.todo_comments = {
   },
 }
 
+M.crates = {
+  n = {
+    ["<leader>rcu"] = {
+      function()
+        require("crates").upgrade_all_crates()
+      end,
+      "Update all crates",
+    },
+  },
+}
+
 local map = vim.keymap.set
 
 for name, maps in pairs(M) do
@@ -110,5 +126,7 @@ for name, maps in pairs(M) do
     end
   end
 end
+
+local nomap = vim.keymap.del
 
 return M

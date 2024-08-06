@@ -32,6 +32,7 @@ alias editv='cd ~/code && ls -1 | nl && echo -n "Enter number: " && read -n 1 in
 
 alias size='sudo du -hs'
 alias c='clear'
+alias e='exit'
 alias nf='neofetch'
 alias ls='eza -a --icons'
 alias ll='eza -al --icons'
@@ -112,3 +113,7 @@ shopt -s autocd
 # Safe rm and mv
 alias rm='rm -i'
 alias mv='mv -i'
+
+# Update Keyboard Firmware (QMK): 
+# https://www.keychron.com/blogs/archived/how-to-factory-reset-or-flash-your-qmk-via-enabled-keychron-q8-keyboard
+alias update-keyboard='cd qmk_firmware && qmk flash -kb keychron/q8/ansi_encoder -km default'

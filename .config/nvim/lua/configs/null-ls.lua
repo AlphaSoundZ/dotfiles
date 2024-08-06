@@ -11,6 +11,9 @@ local sources = {
   formatting.gofumpt,
   formatting.goimports_reviser,
   formatting.golines,
+  -- null_ls.builtins.diagnostics.black,
+  null_ls.builtins.diagnostics.mypy,
+  null_ls.builtins.diagnostics.ruff,
 }
 
 null_ls.setup {
@@ -25,7 +28,7 @@ null_ls.setup {
         buffer = bufnr,
         callback = function()
           -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-          vim.lsp.buf.format { async = false }
+          vim.lsp.buf.format { async = false, bufnr = bufnr }
         end,
       })
     end

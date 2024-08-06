@@ -26,6 +26,7 @@ return {
   },
   {
     "github/copilot.vim",
+    enable = false,
     lazy = false,
     config = function() -- Mapping tab is already used by NvChad
       vim.g.copilot_no_tab_map = true
@@ -62,6 +63,11 @@ return {
         "gofumpt",
         "json-lsp",
         "bash-language-server",
+        "rust-analyzer",
+        "black",
+        "pyright",
+        "mypy",
+        "ruff",
       },
     },
   },
@@ -188,5 +194,75 @@ return {
     config = function()
       require("todo-comments").setup {}
     end,
+  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-context",
+  --   event = "VeryLazy",
+  -- },
+  {
+    "tpope/vim-unimpaired",
+    event = "VeryLazy",
+  },
+  {
+    "rmagatti/auto-session",
+
+    -- run on startup
+    event = "VimEnter",
+    config = function()
+      require("auto-session").setup {
+        log_level = vim.log.levels.ERROR,
+        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+        auto_session_use_git_branch = true,
+
+        auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
+
+        -- ⚠️ This will only work if Telescope.nvim is installed
+        -- The following are already the default values, no need to provide them if these are already the settings you want.
+        session_lens = {
+          -- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
+          buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = false,
+        },
+      }
+
+      -- Set mapping for searching a session.
+      -- ⚠️ This will only work if Telescope.nvim is installed
+      vim.keymap.set("n", "<leader>ss", require("auto-session.session-lens").search_session, {
+        noremap = true,
+      })
+    end,
+  },
+  {
+    "rust-lang/rust.vim",
+    event = "VeryLazy",
+    ft = "rust",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end,
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+    opts = function()
+      return require "configs.rust-tools"
+    end,
+    config = function(_, opts)
+      require("rust-tools").setup(opts)
+    end,
+  },
+  {
+    "saecki/crates.nvim",
+    ft = { "rust", "toml" },
+    config = function(_, opts)
+      local crates = require "crates"
+      crates.setup(opts)
+      crates.show()
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
   },
 }

@@ -52,6 +52,7 @@ alias v='$EDITOR'
 alias wifi='nmtui'
 alias wifilist='nmcli connection show'
 alias wifiup='nmcli connection up'
+alias hotspot='nmcli connection up Öl'
 alias audio='wpctl status'
 alias audioset='wpctl set-default'
 
@@ -83,6 +84,7 @@ alias rbuild='npm run build:dev'
 alias rbuildp='npm run build'
 alias rlint='npx tsc --noEmit'
 alias rstart='npm run start'
+alias rtest='npm run test'
 alias rtestit='~/scripts/nextjs_create_temp_endpoint.sh'
 alias rchroma='sudo docker run -p 8000:8000 chromadb/chroma'
 alias dbpush='npx prisma db push'
@@ -92,6 +94,8 @@ alias dbstudio='npx prisma studio'
 alias dbsql='mariadb -u root -pmysql -h localhost -P 3306 -D admark_ai'
 # fix import error from prod server: sed -i '/@@GLOBAL.GTID_PURGED=/d' 
 alias dbimport='dbreset && mariadb -u root -p admark_ai -h localhost -P 3306 < '
+alias dbimportonly='mariadb -u root -p admark_ai -h localhost -P 3306 < '
+alias dbapplied='npx prisma migrate resolve --applied '
 alias rngrok='ngrok http --domain=optimal-platypus-perfectly.ngrok-free.app 3000'
 alias dbexport='mariadb-dump --user=root --password=mysql --host=localhost --port=3306 admark_ai > '
 alias dbmigrate='npm run migrate'
@@ -170,6 +174,7 @@ alias backupSystem='rsync -rlptgoDP'
 
 alias bloatDetect="ncdu -x /"
 alias runAfterUpdate="bleachbit --clean system.cache system.localizations system.trash system.tmp"
+alias removeUnusedPackages="pacman -Rs $(pacman -Qtdq)"
 
 alias mysqlconsole='mysql -u root -pmysql -h localhost -P 3306'
 
@@ -178,3 +183,12 @@ alias removeUnusedDockerResources='sudo docker system prune -a'
 
 
 alias prodServerConnect='ssh root@167.172.191.211'
+
+alias volume='cd /run/media/alphasoundz/Volume/'
+
+alias rsserver='volume && cd redsea && python webserver.py'
+
+# Created by `pipx` on 2024-08-06 21:23:16
+set PATH $PATH /home/alphasoundz/.local/bin
+
+cd ~/code/admark-ai/

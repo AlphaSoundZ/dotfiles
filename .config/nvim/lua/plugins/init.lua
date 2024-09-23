@@ -143,6 +143,11 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    event = { "BufReadPre", "BufNewFile" },
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "go",
@@ -161,6 +166,24 @@ return {
         "typescript",
         "tsx",
       })
+
+      opts.incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<leader><CR>",   -- Initialize selection
+          node_incremental = "<leader><CR>", -- Increment to the upper named node
+          scope_incremental = false,
+          node_decremental = "<bs>",         -- Decrement to the previous node
+        },
+      }
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = true,
+    opts = {},
+    config = function()
+      require "configs.nvim-treesitter-textobjects"
     end,
   },
   {
@@ -265,4 +288,10 @@ return {
   {
     "hrsh7th/nvim-cmp",
   },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   opts = {},
+  -- },
 }

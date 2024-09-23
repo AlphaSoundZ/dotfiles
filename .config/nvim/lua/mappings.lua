@@ -1,6 +1,7 @@
 require "nvchad.mappings"
 
 -- add yours here
+Tsselect = require "nvim-treesitter.textobjects.select"
 
 local map = vim.keymap.set
 
@@ -12,6 +13,31 @@ map("i", "<Tab>", function()
   return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
 end, { expr = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Move to window above", remap = true })
+
+-- Isolation
+map("v", "<Leader>za", "<Esc>`<kzfgg`>jzfG`<", {
+  noremap = true,
+  desc = "Isolate Selection", -- Everything above und below selection will be folded: https://stackoverflow.com/questions/674613/vim-folds-for-everything-except-something
+})
+map("n", "<Leader>zaf", "<CMD>lua Tsselect.select_textobject('@function.outer')<CR><Esc>`<kzfgg`>jzfG`<", {
+  desc = "Isolate function",
+})
+map("n", "<Leader>zs", "mfggzdGzd`f", {
+  noremap = true,
+  desc = "Deisolate",
+  silent = true,
+})
+
+map("n", "<Leader>tr", "<CMD>TroubleToggle<CR>")
+
+map("n", "<Leader>lr", "<CMD>LspRestart<CR>", { desc = "Restart Lsp Server", noremap = true })
+
+map("n", "tm", "<CMD>lua require('telescope.builtin').lsp_document_symbols({ symbols='method' })<CR>")
+map("n", "tf", "<CMD>lua require('telescope.builtin').lsp_document_symbols({ symbols='function' })<CR>")
+
+-- unmap some default mappings
+map("n", "gn", "", { noremap = true })
+map("n", "gr", "", { noremap = true })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 local M = {}

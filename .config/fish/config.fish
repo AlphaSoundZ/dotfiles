@@ -170,11 +170,13 @@ alias todo='dooit'
 alias admarkai='tmux new-session  "tmux source-file ~/.tmux.conf"'
 
 alias secureCopy='rsync -avtP'
-alias backupSystem='rsync -rlptgoDP'
+alias backupSystem="sudo rsync -rlptgoDHAXa --partial --info=progress2 --exclude='/dev/*' --exclude='/proc/*' --exclude='/sys/*' --exclude='/tmp/*' --exclude='/run/*' --exclude='/mnt/*' --exclude='/media/*' --exclude='/lost+found/' / /run/media/alphasoundz/drivename"
 
 alias bloatDetect="ncdu -x /"
 alias runAfterUpdate="bleachbit --clean system.cache system.localizations system.trash system.tmp"
 alias removeUnusedPackages="pacman -Rs $(pacman -Qtdq)"
+alias cleanOldDockerContainer='sudo docker container prune --filter "until=24h"'
+alias cleanSystemdJournal="sudo journalctl --vacuum-time=4weeks"
 
 alias mysqlconsole='mysql -u root -pmysql -h localhost -P 3306'
 
@@ -188,7 +190,11 @@ alias volume='cd /run/media/alphasoundz/Volume/'
 
 alias rsserver='volume && cd redsea && python webserver.py'
 
+alias paci='sudo pacman -S '
+
 # Created by `pipx` on 2024-08-06 21:23:16
 set PATH $PATH /home/alphasoundz/.local/bin
 
 cd ~/code/admark-ai/
+
+set -g -x GSK_RENDERER gl

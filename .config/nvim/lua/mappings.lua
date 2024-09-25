@@ -36,8 +36,8 @@ map("n", "tm", "<CMD>lua require('telescope.builtin').lsp_document_symbols({ sym
 map("n", "tf", "<CMD>lua require('telescope.builtin').lsp_document_symbols({ symbols='function' })<CR>")
 
 -- unmap some default mappings
-map("n", "gn", "", { noremap = true })
-map("n", "gr", "", { noremap = true })
+-- map("n", "gn", "", { noremap = true })
+-- map("n", "gr", "", { noremap = true })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 local M = {}
@@ -120,8 +120,8 @@ M.dap_go = {
 
 M.rest = {
   n = {
-    ["<leader>rr"] = { "<cmd>lua require('rest-nvim').run()<CR>", "Run Rest Command" },
-    ["<leader>rp"] = { "<cmd>lua require('rest-nvim').preview()<CR>", "Preview Rest Command" },
+    ["<leader>rr"] = { "<cmd>Rest run<CR>", "Run Rest Command" },
+    ["<leader>rp"] = { "<cmd>Rest preview<CR>", "Preview Rest Command" },
     ["<leader>rl"] = { "<cmd>lua require('rest-nvim').last()<CR>", "Last Rest Command" },
   },
 }

@@ -79,10 +79,11 @@ alias openv='ov'
 alias notes='cat ~/notes.txt'
 
 # Web development
+alias radmark='~/scripts/start_admark_ai_commands.sh'
 alias rdev='npm run dev'
-alias rbuild='npm run build:dev'
-alias rbuildp='npm run build'
-alias rlint='npx tsc --noEmit'
+alias rbuild='NODE_OPTIONS="--max-old-space-size=4096" npm run build:dev'
+alias rbuildp='NODE_OPTIONS="--max-old-space-size=4096" npm run build'
+alias rlint='NODE_OPTIONS="--max-old-space-size=4096" npx tsc --noEmit'
 alias rstart='npm run start'
 alias rtest='npm run test'
 alias rtestit='~/scripts/nextjs_create_temp_endpoint.sh'
@@ -90,7 +91,7 @@ alias rchroma='sudo docker run -p 8000:8000 chromadb/chroma'
 alias dbpush='npx prisma db push'
 alias dbreset='dbpush --force-reset'
 alias dbgenerate='npx prisma generate'
-alias dbstudio='npx prisma studio'
+alias dbstudio='npx prisma studio --browser none'
 alias dbsql='mariadb -u root -pmysql -h localhost -P 3306 -D admark_ai'
 # fix import error from prod server: sed -i '/@@GLOBAL.GTID_PURGED=/d' 
 alias dbimport='dbreset && mariadb -u root -p admark_ai -h localhost -P 3306 < '
@@ -103,6 +104,7 @@ alias dbmigreset='npx prisma migrate reset'
 alias dbmigcreate='npm run migration:create'
 alias ngrok3000='ngrok http 127.0.0.1:3000 --host-header="127.0.0.1:3000" --domain=optimal-platypus-perfectly.ngrok-free.app'
 alias ngrok8000='ngrok http 127.0.0.1:8000 --host-header="127.0.0.1:8000" --domain=optimal-platypus-perfectly.ngrok-free.app'
+alias changebranch='rm -rf /prisma/zod && dbmigreset --force && rdev'
 
 # Git
 alias gs="git status"
@@ -145,6 +147,7 @@ alias cd='z'
 # https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 # Dotfiles as git bare repository
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias lazydots='lazygit -g $HOME/.cfg/ -w $HOME'
 
 # Safe rm and mv
 alias rm='rm -i'
@@ -188,7 +191,7 @@ alias prodServerConnect='ssh root@167.172.191.211'
 
 alias volume='cd /run/media/alphasoundz/Volume/'
 
-alias rsserver='volume && cd redsea && python webserver.py'
+alias rsserver='cd ~/music/redsea && python webserver.py'
 
 alias paci='sudo pacman -S '
 

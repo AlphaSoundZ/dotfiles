@@ -13,6 +13,7 @@ map("i", "<Tab>", function()
   return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
 end, { expr = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Move to window above", remap = true })
+map("n", "<leader>lg", "<cmd>terminal lazygit<CR>i", { desc = "Open lazygit" })
 
 -- Isolation
 map("v", "<Leader>za", "<Esc>`<kzfgg`>jzfG`<", {
@@ -28,7 +29,7 @@ map("n", "<Leader>zs", "mfggzdGzd`f", {
   silent = true,
 })
 
-map("n", "<Leader>tr", "<CMD>TroubleToggle<CR>")
+map("n", "<Leader>tr", "<CMD>Trouble diagnostics<CR>")
 
 map("n", "<Leader>lr", "<CMD>LspRestart<CR>", { desc = "Restart Lsp Server", noremap = true })
 

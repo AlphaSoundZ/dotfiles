@@ -11,7 +11,7 @@ local servers = {
   "cssls",
   "tailwindcss",
   "clangd",
-  "tsserver",
+  "ts_ls",
   "jsonls",
   "yamlls",
   "dockerls",

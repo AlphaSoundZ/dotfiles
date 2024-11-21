@@ -108,7 +108,7 @@ return {
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
+      { "tpope/vim-dadbod",                     lazy = true },
       { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
     },
     cmd = {
@@ -150,6 +150,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
+        "haskell",
         "http",
         "go",
         "gomod",
@@ -171,10 +172,10 @@ return {
       opts.incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<leader><CR>", -- Initialize selection
+          init_selection = "<leader><CR>",   -- Initialize selection
           node_incremental = "<leader><CR>", -- Increment to the upper named node
           scope_incremental = false,
-          node_decremental = "<bs>", -- Decrement to the previous node
+          node_decremental = "<bs>",         -- Decrement to the previous node
         },
       }
     end,

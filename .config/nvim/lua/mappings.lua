@@ -80,6 +80,9 @@ M.telescope = {
       "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
       "Create Git Worktree",
     },
+    ["<leader>fl"] = { "<cmd>Telescope resume<CR>", "Resume last search" },
+    ["<leader>fs"] = { "<cmd>Telescope git_status<CR>" },
+    ["<leader>fc"] = { "<cmd>Telescope git_bcommits_range<CR>", "Find commits on current line" },
   },
 }
 

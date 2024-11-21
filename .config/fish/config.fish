@@ -81,13 +81,14 @@ alias notes='cat ~/notes.txt'
 # Web development
 alias radmark='~/scripts/start_admark_ai_commands.sh'
 alias rdev='npm run dev'
-alias rbuild='NODE_OPTIONS="--max-old-space-size=4096" npm run build:dev'
-alias rbuildp='NODE_OPTIONS="--max-old-space-size=4096" npm run build'
-alias rlint='NODE_OPTIONS="--max-old-space-size=4096" npx tsc --noEmit'
+alias rbuild='NODE_OPTIONS="--max-old-space-size=8192" npm run build:dev'
+alias rbuildp='NODE_OPTIONS="--max-old-space-size=8192" npm run build'
+alias rlint='NODE_OPTIONS="--max-old-space-size=8192" npx tsc --noEmit'
 alias rstart='npm run start'
 alias rtest='npm run test'
 alias rtestit='~/scripts/nextjs_create_temp_endpoint.sh'
-alias rchroma='sudo docker run -p 8000:8000 chromadb/chroma'
+#alias rchroma='sudo docker run -p 8000:8000 chromadb/chroma'
+alias rchroma='sudo docker start busy_dewdney'
 alias dbpush='npx prisma db push'
 alias dbreset='dbpush --force-reset'
 alias dbgenerate='npx prisma generate'
@@ -195,9 +196,16 @@ alias rsserver='cd ~/music/redsea && python webserver.py'
 
 alias paci='sudo pacman -S '
 
+alias makes='make && ./solution < sample.in | diff - sample.out'
+alias makesin='make && ./solution < sample.in'
+
+alias colorpicker='hyprpicker | wl-copy'
+
 # Created by `pipx` on 2024-08-06 21:23:16
 set PATH $PATH /home/alphasoundz/.local/bin
 
 cd ~/code/admark-ai/
 
 set -g -x GSK_RENDERER gl
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/alphasoundz/.ghcup/bin $PATH # ghcup-env
